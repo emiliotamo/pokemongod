@@ -154,6 +154,6 @@ button:hover {
 
 /* Efecto al presionar el botón */
 button:active {
-    background-color: #ff4d4d; /* Rojo más claro cuando se hace clic */
+    background-color: #ff4d4d; 
     border-color: #ff4d4d;
 }
