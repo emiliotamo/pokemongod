@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de Pokémon</title>
+    <link rel="stylesheet" href="pokemon2css.css">
+</head>
+<body>
+
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="Logo Pokémon">
+    </header>
+    <h1>Detalles del Pokémon Seleccionado</h1>
+
+    <!-- Detalles del Pokémon seleccionado -->
+    <div id="selected-pokemon-details">
+        <h2>Tu Pokémon</h2>
+        <img id="selected-img" alt="Imagen de Pokémon">
+        <p id="selected-name"></p>
+        <p id="selected-types"></p>
+        <p id="selected-attack"></p>
+        <p id="selected-defense"></p>
+        <p id="selected-hp"></p>
+    </div>
+
+    <button onclick="window.location.href ='pokemon3.html'" >Empezar Combate</button>
+
+    <!-- Detalles del Pokémon oponente -->
+    <div id="opponent-pokemon-details">
+        <h2>Oponente</h2>
+        <img id="opponent-img" alt="Imagen de Pokémon">
+        <p id="opponent-name"></p>
+        <p id="opponent-types"></p>
+        <p id="opponent-attack"></p>
+        <p id="opponent-defense"></p>
+        <p id="opponent-hp"></p>
+    </div>
+
+    <script>
+        // Obtener los datos desde localStorage
+        const data = JSON.parse(localStorage.getItem("pokemonData"));
+
+        if (data) {
+            const { selected, opponent } = data;
+
+            // Mostrar los detalles del Pokémon seleccionado
+            document.getElementById("selected-name").textContent = selected.name;
+            document.getElementById("selected-img").src = selected.img;
+            document.getElementById("selected-types").textContent = `Tipos: ${selected.types}`;
+            document.getElementById("selected-attack").textContent = `Ataque: ${selected.attack}`;
+            document.getElementById("selected-defense").textContent = `Defensa: ${selected.defense}`;
+            document.getElementById("selected-hp").textContent = `HP: ${selected.hp}`;
+
+            // Mostrar los detalles del oponente
+            document.getElementById("opponent-name").textContent = opponent.name;
+            document.getElementById("opponent-img").src = opponent.img;
+            document.getElementById("opponent-types").textContent = `Tipos: ${opponent.types}`;
+            document.getElementById("opponent-attack").textContent = `Ataque: ${opponent.attack}`;
+            document.getElementById("opponent-defense").textContent = `Defensa: ${opponent.defense}`;
+            document.getElementById("opponent-hp").textContent = `HP: ${opponent.hp}`;
+        } else {
+            console.error("No se encontraron datos del Pokémon en localStorage.");
+        }
+    </script>
+
+<footer>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="Logo Pokémon">
+    <div class="footer-content">
+        <p>Creado por Emilio Tamayo &copy; 2024</p>
+        <p>Todos los derechos reservados.</p>
+</body>
+</html>

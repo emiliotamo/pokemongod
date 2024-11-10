@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalles de Pokémon</title>
+    <link rel="stylesheet" href="pokemon3css.css" />
+  </head>
+  <body>
+
+    <header>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="Logo Pokémon">
+  </header>
+  <br>
+    <h1>Batalla Pokémon</h1>
+
+    <div id="battle-container">
+      <div id="combat-container">
+        <div id="selected-pokemon-details">
+          <h2>Tu Pokémon</h2>
+          <img id="selected-img" alt="Imagen de Pokémon" />
+          <p id="selected-name"></p>
+          <p id="selected-hp"></p>
+        </div>
+
+        <button id="attack-btn">Atacar</button>
+        <button id="heal-btn">Curar</button>
+        <button onclick="window.location.href ='pokemon1.html'">A casa</button>
+
+        <div id="opponent-pokemon-details">
+          <h2>Oponente</h2>
+          <img id="opponent-img" alt="Imagen de Pokémon" />
+          <p id="opponent-name"></p>
+          <p id="opponent-hp"></p>
+        </div>
+      </div>
+
+      <div id="battle-log">
+        <h2>Registro de Batalla</h2>
+        <ul id="log-list"></ul>
+      </div>
+    </div>
+
+    <script>
+      const data = JSON.parse(localStorage.getItem("pokemonData"));
+
+      if (data) {
+        const { selected, opponent } = data;
+
+        // selected.maxHp y opponent.maxHp están definidos
+        selected.maxHp = selected.maxHp || selected.hp;
+        opponent.maxHp = opponent.maxHp || opponent.hp;
+
+        document.getElementById("selected-name").textContent = selected.name;
+        document.getElementById("selected-img").src = selected.img;
+        document.getElementById("selected-hp").textContent = `HP: ${Math.round(selected.hp)}`;
+
+        document.getElementById("opponent-name").textContent = opponent.name;
+        document.getElementById("opponent-img").src = opponent.img;
+        document.getElementById("opponent-hp").textContent = `HP: ${Math.round(opponent.hp)}`;
+
+        function checkGameOver() {
+          if (selected.hp <= 0) {
+            logAction("¡Has perdido! El Pokémon seleccionado ha quedado fuera de combate.");
+            disableButtons();
+            return true;
+          } else if (opponent.hp <= 0) {
+            logAction("¡Has ganado! El Pokémon oponente ha quedado fuera de combate.");
+            disableButtons();
+            return true;
+          }
+          return false;
+        }
+
+        function logAction(action) {
+          const logList = document.getElementById("log-list");
+          const listItem = document.createElement("li");
+          listItem.textContent = action;
+          logList.appendChild(listItem);
+        }
+
+        function disableButtons() {
+          document.getElementById("attack-btn").disabled = true;
+          document.getElementById("heal-btn").disabled = true;
+        }
+
+        function uwu() {
+    let randomFactor = Math.random() * (1.5 - 0.5) + 0.5; 
+    let damage = Math.max(selected.attack * randomFactor - opponent.defense, 8); // Al menos 8 de daño
+
+    opponent.hp -= damage;
+    if (opponent.hp < 0) opponent.hp = 0;
+
+    document.getElementById("opponent-hp").textContent = `HP: ${Math.round(opponent.hp)}`;
+    data.opponent.hp = opponent.hp;
+    localStorage.setItem("pokemonData", JSON.stringify(data));
+
+    logAction(`Atacas a ${opponent.name} causando ${Math.round(damage)} de daño.`);
+
+    if (checkGameOver()) return;
+
+    // acción aleatoria para el oponente
+    let randomValue = Math.floor(Math.random() * 2) + 1;
+    if (randomValue === 1) {
+        nashe();
+    } else {
+        curitauwu();
+    }
+}
+
+function onichan() {
+    let healFactor = Math.random() * (0.25 - 0.15) + 0.15; // Curación aleatoria entre 15% y 25% de la vida máxima
+    let healAmount = Math.round(selected.maxHp * healFactor);
+
+    selected.hp = Math.min(selected.hp + healAmount, selected.maxHp);
+
+    document.getElementById("selected-hp").textContent = `HP: ${Math.round(selected.hp)}`;
+    data.selected.hp = selected.hp;
+    localStorage.setItem("pokemonData", JSON.stringify(data));
+
+    logAction(`Curaste a ${selected.name} con ${healAmount} de HP.`);
+
+    if (checkGameOver()) return;
+
+    // Acción aleatoria para el oponente
+    let randomValue = Math.floor(Math.random() * 2) + 1;
+    if (randomValue === 1) {
+        nashe();
+    } else {
+        curitauwu();
+    }
+}
+
+        function nashe() {
+          let randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
+          let damage = Math.max(opponent.attack * randomFactor - selected.defense, 0);
+
+          selected.hp -= damage;
+          if (selected.hp < 0) selected.hp = 0;
+
+          document.getElementById("selected-hp").textContent = `HP: ${Math.round(selected.hp)}`;
+          data.selected.hp = selected.hp;
+          localStorage.setItem("pokemonData", JSON.stringify(data));
+
+          logAction(`El oponente ataca a ${selected.name} causando ${Math.round(damage)} de daño.`);
+
+          if (checkGameOver()) return;
+        }
+
+        function curitauwu() {
+          let healAmount = 20;
+          opponent.hp = Math.min(opponent.hp + healAmount, opponent.maxHp);
+
+          document.getElementById("opponent-hp").textContent = `HP: ${Math.round(opponent.hp)}`;
+          data.opponent.hp = opponent.hp;
+          localStorage.setItem("pokemonData", JSON.stringify(data));
+
+          logAction(`El oponente se cura con ${healAmount} de HP.`);
+
+          if (checkGameOver()) return;
+        }
+
+        document.getElementById("attack-btn").addEventListener("click", uwu);
+        document.getElementById("heal-btn").addEventListener("click", onichan);
+      } else {
+        console.error("No se encontraron datos del Pokémon en localStorage.");
+      }
+    </script>
+
+<footer>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="Logo Pokémon">
+  <div class="footer-content">
+      <p>Creado por Emilio Tamayo &copy; 2024</p>
+      <p>Todos los derechos reservados.</p>
+  </body>
+</html>

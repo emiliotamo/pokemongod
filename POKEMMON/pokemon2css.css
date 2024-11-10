@@ -1,0 +1,159 @@
+/* Fuente estilo pixel */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Press Start 2P', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    background-color: #3b4cca;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before, footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://example.com/pokemon-background-pattern.png'); /* Imagen de patrón Pokémon */
+    opacity: 0.1;
+    background-size: cover;
+    z-index: -1;
+}
+
+header img, footer img {
+    height: 60px;
+    vertical-align: middle;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+header img:hover, footer img:hover {
+    transform: scale(1.1); /* Efecto al pasar el ratón */
+}
+
+/* Estilos para el texto en el header y footer */
+h1, h2 {
+    font-family: 'Press Start 2P', sans-serif;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 1.8rem;
+}
+
+/* Contenido adicional del footer */
+.footer-content {
+    margin-top: 10px;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.footer-content p:first-child {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Enlaces en header y footer */
+header a, footer a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+header a:hover, footer a:hover {
+    color: #ffcb05; 
+}
+
+
+
+
+/* Encabezado */
+h1 {
+    color: #3b4cca;
+    text-shadow: 1px 1px 2px #2c2c2c, 0 0 25px rgba(255, 255, 0, 0.7), 0 0 5px rgba(255, 255, 0, 0.7); /* Sombra con resplandor amarillo */
+    margin-top: 20px;
+    font-size: 36px; 
+    font-family: 'Press Start 2P', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #3b4cca; /* Línea decorativa */
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Efecto de hover */
+h1:hover {
+    text-shadow: 1px 1px 2px #2c2c2c, 0 0 25px rgba(255, 255, 0, 1), 0 0 5px rgba(255, 255, 0, 1); /* Resplandor más intenso en amarillo */
+    transform: scale(1.1); /* Aumenta el tamaño al pasar el ratón */
+    border-bottom: 2px solid yellow; /* La línea de abajo también cambia a amarillo */
+}
+
+
+/* Contenedor del combate */
+#combat-container {
+    background-color: #ffffff;
+    border: 3px solid #3b4cca;
+    border-radius: 12px;
+    padding: 20px;
+    width: 300px;
+    margin: 20px auto; /* Centra el contenedor en la página */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Ajusta el estilo de los contenedores de Pokémon dentro del combate */
+#selected-pokemon-details, #opponent-pokemon-details {
+    background-color: #ffffff;
+    border: 2px solid #3b4cca;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px auto; /* Espacio entre los Pokémon y el botón */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para el botón */
+button {
+    background-color: #3b4cca; /* Color azul similar al de los Pokémon */
+    color: white;
+    font-family: 'Press Start 2P', sans-serif; /* Fuente pixelada  */
+    border: 2px solid #3b4cca;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease; 
+    margin-top: 10px;
+}
+
+/* Efecto hover: cambia a rojo */
+button:hover {
+    background-color: #cc0000;
+    border-color: #cc0000;
+    transform: scale(1.05); /* Aumenta el tamaño un poco para el efecto */
+}
+
+/* Efecto al presionar el botón */
+button:active {
+    background-color: #ff4d4d; /* Rojo más claro cuando se hace clic */
+    border-color: #ff4d4d;
+}
